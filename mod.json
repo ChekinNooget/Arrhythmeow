@@ -1,0 +1,14 @@
+{
+	"namespace": "Arrhythmeow",
+	"displayName": "Arrhythmeow",
+	"version": "1.0.0",
+	"synchronyVersion": "4.1.1",
+	"description": "No description given.",
+	"author": "ChekinNooget",
+	"dependencies": {},
+	"api": {"scriptPath":""},
+	"icon": "arrhythmeowIcon.png",
+	"banner": "arrhythmeowBanner.png",
+	"tags": [],
+	"name": "arrhythmeow"
+}
