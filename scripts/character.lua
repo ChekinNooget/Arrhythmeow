@@ -4,6 +4,8 @@
 local customEntities = require "necro.game.data.CustomEntities"
 local SoundGroups = require "necro.audio.SoundGroups"
 
+local ItemBan = require "necro.game.item.ItemBan"
+
 --list of sounds to play
 SoundGroups.register {
     --metronome sounds
@@ -29,7 +31,6 @@ SoundGroups.register {
 
 --add the character (wow so fancy)
 --TODO: clean this up, figure out what items to give them
---ban rhythm shrine (is very goofy)
 customEntities.extend{
     name = "Arrhythmeow",
     template = customEntities.template.player(),
@@ -40,16 +41,14 @@ customEntities.extend{
             },
             sprite = {
                 texture = "mods/Arrhythmeow/sprites/player1_armor_body.png"
-            },--[[
+            },
             cloneSprite = {
-                texture = "mods/march/images/entities/marchClone.png",
+                texture = "mods/Arrhythmeow/sprites/arrhythmeowClone.png",
                 height = 27,
-                offsetY = -4
+                offsetX = -1,
+                offsetY = 1
             },
-            bestiary = {
-                image = "mods/march/images/entities/bestiary_march.png"
-            },
-            characterEquipmentSpriteRow = false,]]--
+            --[[characterEquipmentSpriteRow = false,]]--
             initialInventory = {
                 items = {
                     "ShovelBasic",
@@ -57,6 +56,17 @@ customEntities.extend{
                     "Bomb",
                     "ArmorObsidian"
                 }
+            },
+            inventoryBannedItems = {
+                components = {
+                    shrineBanRhythmlocked = ItemBan.Type.FULL,
+                }
+            },
+            textCharacterSelectionMessage = {
+                text = "Arrhythmeow Mode!\nPlay with purregular tempo."
+            },
+            bestiary = {
+                image = "mods/Arrhythmeow/sprites/bestiary_arrhythmeow.png"
             },
             --[[soundHit = {
                 sound = "MetronomeOnBeat"
@@ -69,14 +79,7 @@ customEntities.extend{
                 slots = {
                     weapon = true
                 }
-            },
-            inventoryBannedItems = {
-                components = {
-                    itemBanWeaponlocked = ItemBan.Type.FULL,
-                    shrineBanWeaponlocked = ItemBan.Type.FULL,
-                    itemBanNoDamage = ItemBan.Type.FULL,
-                }
-            },
+            },,
             inventoryBannedItemTypes = {
                 types = {
                     Sync_CharmThrowing = ItemBan.Type.FULL,
@@ -85,20 +88,36 @@ customEntities.extend{
                     FeetBootsLeaping = ItemBan.Type.GENERATION,
                     --RingRegeneration = ItemBan.Type.GENERATION
                 }
-            },
-            textCharacterSelectionMessage = {
-                text = "March Mode!\nMove near enemies to build static\n then discharge it to attack enemies."
             },]]--
         },
         {   
             sprite = {
                 texture = "mods/Arrhythmeow/sprites/player1_heads.png",
 
-            },--[[
+            },
             attachmentCopySpritePosition = {
                 offsetY = -4,
                 offsetZ = 4
-            }]]--
+            }
+            
+        },
+        characterEquipmentSpriteRow = {
+            defaultBodyRow = 2
+        },
+        equipment = {
+            slotOffsets= {
+                shovel = {3,3, 3,3, 3,3, 3,3},
+                weapon = {10,0, 1,1, 1,2, 0,1},
+                head = {3,-1, 3,0, 3,1, 3,-1},
+                feet = {1,1, 1,1, 1,1, 1,1},
+                torch = {0,0, 0,0, 0,0, 0,0},
+                ring = {1,0, 0,1, 0,2, 1,2},
+                misc = {1,-1, 1,0, 1,2, 1,0},
+                hud = {0,-1, 0,-1, 0,1, 0,0}
+            },
+            slotMirrors= {
+                head=0
+            }
         }
     }--,
     --modifier = function(entity)

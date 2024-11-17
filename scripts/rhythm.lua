@@ -10,6 +10,7 @@ make it so that this all only happens if the character selected is the character
 song loop ^_^ yay
 metronome breaks if the game lags and the beat bars mess up? dunno if i can fix this easily.
 ^^dunno if this is fixed but it prob is bc other thing is fixed too
+ban rhythm shrine (i dont know if this works but it probably does tbhtbhtbh)
 
 misc TODO:
 =============================
@@ -24,21 +25,14 @@ the metronome MAY break if the game lags just as the song loops. unsure, but for
 ]]--
 
 --modules (i think that's what they're called?)
-local customEntities = require "necro.game.data.CustomEntities"
-local ItemBan = require "necro.game.item.ItemBan"
 local Player = require "necro.game.character.Player"
 local PlayerList = require "necro.client.PlayerList"
-
-local GameMod = require "necro.game.data.resource.GameMod"
-local GameSong = require "necro.game.data.resource.GameSong"
 
 local CurrentLevel = require "necro.game.level.CurrentLevel"
 local RNG = require "necro.game.system.RNG"
 
 local Music = require "necro.audio.Music"
 local Sound = require "necro.audio.Sound"
-local SoundGroups = require "necro.audio.SoundGroups"
-local Soundtrack = require "necro.game.data.Soundtrack" --TODO set manual 60/XXX MPM (1/BPM or time between beats) for built in songs; otherwise do current method (which is take a few beats and average it)
 
 --variables used throughout the program. idk lua so they're all local but you can prob change it to global right
 local beatTime = 1 --how long between beats in seconds
@@ -64,7 +58,7 @@ event.musicTrack.add("musicTest", {order="replaySkipMute"}, function(ev)
     shouldBeScuffedBeatmap = false
     beatmap = Music.getBeatmap() --get the beatmap.
 
-    local FLOOR_BPMS = {{115, 130, 140}, {130, 140, 150}, {135, 145, 155}, {130, 145, 160}, {130, 140, 1554}}
+    local FLOOR_BPMS = {{115, 130, 140}, {130, 140, 150}, {135, 145, 155}, {130, 145, 160}, {130, 140, 155}}
     local BOSS_BPMS = {120, 175, 123, 126, 140, 140, 160, 120, 150, 125, 145}
 
     if checkPlayer() then

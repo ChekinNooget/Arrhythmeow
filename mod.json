@@ -10,5 +10,6 @@
 	"icon": "arrhythmeowIcon.png",
 	"banner": "arrhythmeowBanner.png",
 	"tags": [],
-	"name": "arrhythmeow"
+	"name": "arrhythmeow",
+	"pendingVersion": "1.0.0"
 }
