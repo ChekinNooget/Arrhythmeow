@@ -7,6 +7,7 @@ local SoundGroups = require "necro.audio.SoundGroups"
 local ItemBan = require "necro.game.item.ItemBan"
 
 --list of sounds to play
+--(for now all metronome sounds are just. betweenbeat)
 SoundGroups.register {
     --metronome sounds
     --this one plays on beat
@@ -48,7 +49,6 @@ customEntities.extend{
                 offsetX = -1,
                 offsetY = 1
             },
-            --[[characterEquipmentSpriteRow = false,]]--
             initialInventory = {
                 items = {
                     "ShovelBasic",
@@ -68,42 +68,12 @@ customEntities.extend{
             bestiary = {
                 image = "mods/Arrhythmeow/sprites/bestiary_arrhythmeow.png"
             },
-            --[[soundHit = {
-                sound = "MetronomeOnBeat"
-            },
-            traitSmallerShops = {},
-            playableCharacter = { 
-                lobbyOrder = 31.01
-            },
-            inventoryCursedSlots = {
-                slots = {
-                    weapon = true
-                }
-            },,
-            inventoryBannedItemTypes = {
-                types = {
-                    Sync_CharmThrowing = ItemBan.Type.FULL,
-                    trill_throwBand = ItemBan.Type.FULL,
-                    march_DischargeSpell = ItemBan.Type.LOCK,
-                    FeetBootsLeaping = ItemBan.Type.GENERATION,
-                    --RingRegeneration = ItemBan.Type.GENERATION
-                }
-            },]]--
         },
-        {   
+        {
             sprite = {
                 texture = "mods/Arrhythmeow/sprites/player1_heads.png",
-
-            },
-            attachmentCopySpritePosition = {
-                offsetY = -4,
-                offsetZ = 4
             }
-            
-        },
-        characterEquipmentSpriteRow = {
-            defaultBodyRow = 2
-        },
+        }--[[, uhhhhh ill figure this out later TODO: sync equipment thingy
         equipment = {
             slotOffsets= {
                 shovel = {3,3, 3,3, 3,3, 3,3},
@@ -118,9 +88,6 @@ customEntities.extend{
             slotMirrors= {
                 head=0
             }
-        }
-    }--,
-    --modifier = function(entity)
-    --    PlayableCharacters.addCharacterSounds(entity, "suzu")
-    --end
+        }]]--
+    }
 }

@@ -11,6 +11,7 @@ song loop ^_^ yay
 metronome breaks if the game lags and the beat bars mess up? dunno if i can fix this easily.
 ^^dunno if this is fixed but it prob is bc other thing is fixed too
 ban rhythm shrine (i dont know if this works but it probably does tbhtbhtbh)
+sprite sometimes breaks in lobby when mod first enable
 
 misc TODO:
 =============================
@@ -19,8 +20,8 @@ quick lobby movement switching ?? (probably never)
 sound effects (meow meow)
 beating heart on the beat bars | draw a cat version (im very bad at drawing uh oh)
 can't move right away if beatmapOverride is on. maybe workaround for now is set first beat to .1 seconds, but this is bad.
-sprite sometimes breaks in lobby when mod first enable
-the metronome MAY break if the game lags just as the song loops. unsure, but for now ill keep it in min d
+the metronome MAY break if the game lags just as the song loops. unsure, but for now ill keep it in mind
+both necrodancer fights
 =============================
 ]]--
 
@@ -49,9 +50,9 @@ local function checkPlayer()
     return Player.getCharacterType(PlayerList.getLocalPlayerID()) == CHAR_NAME
 end
 
-local function setScuffedBeatmap()--how long between beats
+local function setScuffedBeatmap() --set how long between beats, for songs that don't appear in regular all zones
     beatmap = Music.getBeatmap() --get the beatmap.
-    beatTime = (beatmap[7]-beatmap[3])/4
+    beatTime = (beatmap[7]-beatmap[3])/4 --average a few beats
 end
 
 event.musicTrack.add("musicTest", {order="replaySkipMute"}, function(ev)
@@ -90,7 +91,7 @@ end)
 event.levelLoad.add("newLevel", {order="musicLayer"}, function(ev)
     --only change beatmap if char
     if checkPlayer() then
-        --set new beatmap using old beatmap
+        --set new beatmap if not a regular song
         if shouldBeScuffedBeatmap then
             setScuffedBeatmap()
         end
@@ -183,7 +184,7 @@ end)
 --replace the beatmap with the new and improvedTM beatmap, of course
 --also update "is nobeat mode" status
 event.objectUpdateRhythm.add("newBeatmap", {order="musicChange"}, function(ev)
-    if checkPlayer() then
+    if checkPlayer() and not CurrentLevel.isLobby() then
         doesIgnoreRhythm = ev.ignoreRhythm
         ev.beatmapOverride = beatmap
     end
@@ -199,7 +200,7 @@ end
 
 event.tick.add("playTick", {order="gameSession"}, function(ev)
     --if player is arrythmeow
-    if checkPlayer() then
+    if checkPlayer() and not CurrentLevel.isLobby() then
         --don't play metronome sounds if nobeat mode or something
         if not doesIgnoreRhythm then
             --check if the stuff even exists, if so play sounds
