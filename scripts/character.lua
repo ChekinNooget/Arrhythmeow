@@ -53,7 +53,7 @@ customEntities.extend{
             initialInventory = {
                 items = {
                     "ShovelBasic",
-                    "WeaponObsidianDagger",
+                    "WeaponObsidianCat",
                     "Bomb",
                     "ArmorObsidian"
                 }
